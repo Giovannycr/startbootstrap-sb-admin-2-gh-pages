@@ -15,15 +15,35 @@ const { verifyToken } = require('./middleware/auth');
 
 const app = express();
 const server = http.createServer(app);
+
+// Lista de orígenes permitidos
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://127.0.0.1:5500', // Para Live Server de VSCode
+    'https://chatonline123.netlify.app' // Tu frontend en Netlify
+];
+
 const io = socketIo(server, {
     cors: {
-        origin: "*",
+        origin: allowedOrigins,
         methods: ["GET", "POST"]
     }
 });
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+    origin: (origin, callback) => {
+        // Permitir peticiones sin 'origin' (como apps móviles o Postman)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'La política de CORS para este sitio no permite el acceso desde el origen especificado.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Pasar la instancia de Socket.IO a las rutas
