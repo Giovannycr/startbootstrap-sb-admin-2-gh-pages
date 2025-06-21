@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Script de ejemplo para desplegar la aplicación
+# Este script es solo de referencia, no se ejecuta automáticamente
+
+echo "=== Guía de Despliegue en Netlify ==="
+echo ""
+echo "1. Primero, despliega tu backend en Render:"
+echo "   - Ve a https://render.com"
+echo "   - Conecta tu repositorio de GitHub"
+echo "   - Crea un nuevo Web Service"
+echo "   - Selecciona el directorio backend/"
+echo "   - Configura las variables de entorno"
+echo ""
+echo "2. Una vez que tengas la URL de tu backend, actualiza js/config.js:"
+echo "   - Cambia 'tu-backend-url.herokuapp.com' por tu URL real"
+echo ""
+echo "3. Sube tu código a GitHub:"
+echo "   git add ."
+echo "   git commit -m 'Preparado para despliegue en Netlify'"
+echo "   git push origin main"
+echo ""
+echo "4. Despliega en Netlify:"
+echo "   - Ve a https://netlify.com"
+echo "   - Conecta tu repositorio de GitHub"
+echo "   - Configura:"
+echo "     * Build command: (dejar vacío)"
+echo "     * Publish directory: ."
+echo "   - Haz clic en 'Deploy site'"
+echo ""
+echo "5. Configura tu dominio personalizado (opcional)"
+echo ""
+echo "¡Listo! Tu aplicación estará disponible en Netlify." 
